@@ -6,22 +6,23 @@ from typing import Tuple
 
 class RFModel:
     def __init__(self, training_X: pd.DataFrame, training_y: pd.DataFrame, 
-            max_depth: int, random_state: int):
+            max_depth: int=10, random_state: int=0):
         self.clf = RandomForestRegressor(max_depth=max_depth, random_state=random_state)
         self.clf.fit(training_X, training_y)
 
 
-    def test(self, testing_X: pd.DataFrame, testing_y: pd.DataFrame) -> Tuple[float,
+    def test(self, testing_X: pd.DataFrame, testing_y: pd.DataFrame, to_std_out: bool=False) -> Tuple[float,
             float, float]:
-        output = self.clf.predict(testing_X)
+        predicted = self.clf.predict(testing_X)
 
-        mape, rmse, mbe = self.validate(predicted, realized)
+        mape, rmse, mbe = self.validate(predicted, testing_y)
 
-        s = f"MAPE: {mape} | RMSE: {rmse} | MBE: {mbe}"
-        l = len(s)
-        s = "="*l + "\n" + s + "\n" + "="*l + "\n"
-        print(s)
-        return mape, rmse, mbe
+        if bool:
+            s = f"| MAPE: {mape} | RMSE: {rmse} | MBE: {mbe} |"
+            l = len(s)
+            s = "="*l + "\n" + s + "\n" + "="*l + "\n"
+            print(s)
+        return mape, rmse, mbe, predicted, testing_y
         
 
     def validate(self, predicted: np.array, realized: np.array) -> Tuple[float,

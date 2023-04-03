@@ -1,67 +1,54 @@
 import pandas as pd
 import numpy as np
 import datetime
+import os
 
 
 class DataParser:
-    def __init__(self, data: pd.DataFrame, autoparse=False):
-        self.data = data
+    def __init__(self, data_filename: str, autoparse=False):
+        
+        if os.path.isfile(data_filename):
+            self.__data = pd.read_csv(data_filename)
+        else:
+            raise OSError(f"{data_filename} is not a real file")
+
 
         if autoparse:
             self.parse_all()
 
 
     def parse_all(self):
-        self.data["Date"] = self.parse_dates()
-        self.data.set_index("Date")
-
         moving_average_symbol = "Close"
 
-        self.data["H-L"] = self.parse_HLrange()
-        self.data["O-C"] = self.parse_OCrange()
-        self.data["7_day_ma"] = self.calc_MA(7, moving_average_symbol)
-        self.data["14_day_ma"] = self.calc_MA(14, moving_average_symbol)
-        self.data["21_day_ma"] = self.calc_MA(21, moving_average_symbol)
-        self.data["7_day_std"] = self.calc_STD()
-
+        self.__data["H-L"] = self.calc_HLrange()
+        self.__data["O-C"] = self.calc_OCrange()
+        self.__data["7_day_ma"] = self.calc_MA(7, moving_average_symbol)
+        self.__data["14_day_ma"] = self.calc_MA(14, moving_average_symbol)
+        self.__data["21_day_ma"] = self.calc_MA(21, moving_average_symbol)
+        self.__data["7_day_std"] = self.calc_STD(7, moving_average_symbol)
+        
+        self.__data = self.__data.dropna()
+        self.__data["Date"] = pd.to_datetime(self.__data["Date"], format="%Y-%m-%d")
+        self.__data.set_index("Date", inplace=True)
 
     def parse_dates(self) -> pd.Series:
-        return pd.to_datetime(self.data["Date"], format='%Y-%m-%d')
+        return pd.to_datetime(self.__data["Date"], format='%Y-%m-%d')
 
 
     def calc_HLrange(self) -> pd.Series:
-        return self.data["High"] - self.data["Low"]
+        return self.__data["High"] - self.__data["Low"]
 
 
     def calc_OCrange(self) -> pd.Series:
-        return self.data["Open"] - self.data["Close"]
+        return self.__data["Open"] - self.__data["Close"]
 
 
-    def calc_MA(self, days: int, symbol: str) -> pd.Series:
-        delta = datetime.timedelta(days=days)
-        mindate = self.data.index[0]
-
-        return np.vectorize(self.__calc_MA_helper)(self.data, mindate, symbol)
+    def calc_MA(self, days: int, symbol: str):
+        return self.__data[symbol].rolling(window=days).mean()
 
         
     def calc_STD(self, days: int, symbol: str) -> pd.Series:
-        delta = datetime.timedelta(days=days)
-        mindate = self.data.index[0]
-        
-        return np.vectorize(self.__calc_STD_helper)(self.data, mindate, symbol)
+        return self.__data[symbol].rolling(window=days).std()
 
-
-    def __calc_STD_helper(self, row, delta, mindate, symbol):
-        minimum = max(data - delta, mindate)
-
-        subtable = self.data.iloc[minimum : row.index][symbol]
-
-        return np.std(subtable)
-
-
-    def __calc_MA_helper(self, row, delta, mindate, symbol):
-        minimum = max(data - delta, mindate)
-
-        subtable = self.data.iloc[minimum : row.index][symbol]
-
-        return np.mean(subtable)
+    def get_data(self):
+        return self.__data
