@@ -3,14 +3,19 @@ from sklearn.metrics import mean_absolute_percentage_error, mean_squared_error
 import numpy as np
 import pandas as pd
 from typing import Tuple
+import random
 
 
 class RFModel:
 
     def __init__(self, training_X: pd.DataFrame, training_y: pd.DataFrame,
-                 max_depth: int = 10, random_state: int = 0):
+                 max_depth: int = 100, n_estimators: int = 100,
+                 random_state: int = random.randint(0, 100),
+                 criterion: str = "squared_error"):
         self.clf = RandomForestRegressor(max_depth=max_depth,
-                                         random_state=random_state)
+                                         random_state=random_state,
+                                         n_estimators=n_estimators,
+                                         criterion=criterion)
         self.clf.fit(training_X, training_y)
 
     def test(self, testing_X: pd.DataFrame, testing_y: pd.DataFrame,
