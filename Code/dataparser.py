@@ -22,6 +22,7 @@ class DataParser:
         self.__data["14_day_ma"] = self.calc_MA(14, moving_average_symbol)
         self.__data["21_day_ma"] = self.calc_MA(21, moving_average_symbol)
         self.__data["7_day_std"] = self.calc_STD(7, moving_average_symbol)
+        self.__data["next_day_close"] = self.calc_next_day_close()
 
         self.__data = self.__data.dropna()
         self.__data["Date"] = pd.to_datetime(self.__data["Date"],
@@ -42,6 +43,9 @@ class DataParser:
 
     def calc_STD(self, days: int, symbol: str) -> pd.Series:
         return self.__data[symbol].rolling(window=days).std()
+
+    def calc_next_day_close(self):
+        return self.__data["Close"].shift(periods=-1)
 
     def get_data(self):
         return self.__data

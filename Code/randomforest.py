@@ -19,12 +19,13 @@ class RFModel:
         self.clf.fit(training_X, training_y)
 
     def test(self, testing_X: pd.DataFrame, testing_y: pd.DataFrame,
-             to_std_out: bool = False) -> Tuple[float, float, float]:
+             to_std_out: bool = False) -> Tuple[float, float, float, np.array,
+                                                np.array]:
         predicted = self.clf.predict(testing_X)
 
         mape, rmse, mbe = self.validate(predicted, testing_y)
 
-        if bool:
+        if to_std_out:
             s = f"| MAPE: {mape} | RMSE: {rmse} | MBE: {mbe} |"
             string_len = len(s)
             s = "="*string_len + "\n" + s + "\n" + "="*string_len + "\n"

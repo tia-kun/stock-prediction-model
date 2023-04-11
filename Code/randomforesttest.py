@@ -5,8 +5,8 @@ import datetime
 
 
 def main():
-    TRAINING_DATA_DIR = "../Corporation Data/Training Data/JNJ_Training.csv"
-    TESTING_DATA_DIR = "../Corporation Data/Test Data/JNJ_Testing.csv"
+    TRAINING_DATA_DIR = "../Corporation Data/Training Data/GS_Training.csv"
+    TESTING_DATA_DIR = "../Corporation Data/Test Data/GS_Testing.csv"
 
     testing_data = DataParser(TESTING_DATA_DIR,
                               autoparse=True).get_data()[datetime.date(2018,
@@ -14,10 +14,10 @@ def main():
     training_data = DataParser(TRAINING_DATA_DIR, autoparse=True).get_data()
     training_X = training_data[["H-L", "O-C", "7_day_ma", "14_day_ma",
                                 "21_day_ma", "7_day_std"]]
-    training_y = training_data["Close"]
+    training_y = training_data["next_day_close"]
     testing_X = testing_data[["H-L", "O-C", "7_day_ma", "14_day_ma",
                               "21_day_ma", "7_day_std"]]
-    testing_y = testing_data["Close"]
+    testing_y = testing_data["next_day_close"]
 
     rf = RFModel(training_X, training_y, max_depth=150, n_estimators=200)
 
