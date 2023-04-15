@@ -11,11 +11,19 @@ class RFModel:
     def __init__(self, training_X: pd.DataFrame, training_y: pd.DataFrame,
                  max_depth: int = 100, n_estimators: int = 100,
                  random_state: int = random.randint(0, 100),
-                 criterion: str = "squared_error"):
+                 criterion: str = "squared_error",
+                 min_samples_leaf: int = 1,
+                 max_features: float = 1.0,
+                 max_leaf_nodes: int = None,
+                 min_weight_fraction_leaf: float = 0.0):
         self.clf = RandomForestRegressor(max_depth=max_depth,
                                          random_state=random_state,
                                          n_estimators=n_estimators,
-                                         criterion=criterion)
+                                         criterion=criterion,
+                                         min_samples_leaf=min_samples_leaf,
+                                         max_features=max_features,
+                                         max_leaf_nodes=max_leaf_nodes,
+                                         min_weight_fraction_leaf=min_weight_fraction_leaf)
         self.clf.fit(training_X, training_y)
 
     def test(self, testing_X: pd.DataFrame, testing_y: pd.DataFrame,
