@@ -3,12 +3,19 @@ import os
 
 
 class DataParser:
-    def __init__(self, data_filename: str, autoparse=False):
+    def __init__(self, data_filename: str = None, autoparse: bool = False,
+                 data: pd.DataFrame = None):
+        if data_filename:
 
-        if os.path.isfile(data_filename):
-            self.__data = pd.read_csv(data_filename)
+            if os.path.isfile(data_filename):
+                self.__data = pd.read_csv(data_filename)
+            else:
+                raise OSError(f"{data_filename} is not a real file")
+        elif data is not None:
+            self.__data = data.copy(deep=True)
+            del data
         else:
-            raise OSError(f"{data_filename} is not a real file")
+            raise IOError("data_filename or data arguments need to be set")
 
         if autoparse:
             self.parse_all()
@@ -26,8 +33,9 @@ class DataParser:
 
         self.__data = self.__data.dropna()
         self.__data["Date"] = pd.to_datetime(self.__data["Date"],
-                                             format="%Y-%m-%d")
+                                                 format="%Y-%m-%d")
         self.__data.set_index("Date", inplace=True)
+        self.__data.dropna(inplace=True)
 
     def parse_dates(self) -> pd.Series:
         return pd.to_datetime(self.__data["Date"], format='%Y-%m-%d')

@@ -13,7 +13,7 @@ class RFModel:
                  random_state: int = random.randint(0, 100),
                  criterion: str = "squared_error",
                  min_samples_leaf: int = 1,
-                 max_features: float = 1.0,
+                 max_features: float = "sqrt",
                  max_leaf_nodes: int = None,
                  min_weight_fraction_leaf: float = 0.0):
         self.clf = RandomForestRegressor(max_depth=max_depth,
