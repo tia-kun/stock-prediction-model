@@ -40,6 +40,6 @@ class ReplicationRFModel:
 
         rmse = mean_squared_error(actual, predicted)
         mape = mean_absolute_percentage_error(actual, predicted)
-        mbe = np.mean(actual, predicted)
+        mbe = np.mean(actual - predicted)
 
         return actual, predicted, rmse, mape, mbe
