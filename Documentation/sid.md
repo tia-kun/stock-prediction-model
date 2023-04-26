@@ -12,4 +12,4 @@ Work Done:
   ANN Model Help:
   - Incorporated Input Variables in ANN model.
   - Created plotting feature to display ANN model
-  - [Corporation Data/ANN Model Code.ipynb]
+  - [Code Folder]
