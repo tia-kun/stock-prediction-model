@@ -11,4 +11,4 @@ Contribution: Developed ANN Model
 * Scaled the input data, fit model to the training sets, and predicted the test set results for each company’s stock closing prices and expected error values.
 * Implemented plotting feature to display a visualization of model.
 
-* Complete code with output found here: [Corporation Data/ANN Model Code.ipynb]
+* Complete code with output found here: [Corporation Data/ANN Model Code.ipynb](https://github.com/tia-kun/stock-price-prediction-model/blob/main/Corporation%20Data/.ipynb_checkpoints/ANN%20Model%20Code.ipynb)
