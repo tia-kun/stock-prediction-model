@@ -1,5 +1,7 @@
 # Stock Closing Price Prediction Model
 
+ML in Financial Markets VIP: Asset Pricing Subteam Final Project
+
 Contributers: Tia Kungwani, Andrew Kaminer, Siddharth Vijay
 
 Developed two ML-based models (ANN Model and Random Forest Model) to predict the stock closing prices of 5 specific companies from different sectors.
