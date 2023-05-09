@@ -1,7 +1,7 @@
 # Documentation For Asset Pricing Subteam 2023 Spring Semester
 
-This is the documentation for code/research/etc. It will have pages for each
-member and each project/tool.
+This is the documentation for code/research/etc. Below are pages for each
+member's contributions.
 
 ## Member Pages
 
