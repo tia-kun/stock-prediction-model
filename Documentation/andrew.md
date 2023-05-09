@@ -1,6 +1,6 @@
 # Andrew Kaminer
 
-My projects.
+Developed Random Forest Model.
 
 [Go to Main Documentation Page](../README.md)
 
