@@ -1,5 +1,5 @@
 # Andrew Kaminer
 
-Developed Random Forest Model.
-
 [Go to Main Documentation Page](../Documentation)
+
+Developed Random Forest Model.
