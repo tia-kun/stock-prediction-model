@@ -2,7 +2,7 @@
 
 [Go to Main Documentation Page](../Documentation)
 
-Work Done:
+Contribution:
 
   Data Extraction:
   - Gathered Both Training and Testing Data from Yahoo Finance for each company [Under Corporation Data Folder].
