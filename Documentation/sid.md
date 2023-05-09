@@ -1,6 +1,6 @@
 # Sid
 
-[Go to Main Documentation Page](../README.md)
+[Go to Main Documentation Page](../Documentation)
 
 Work Done:
 
