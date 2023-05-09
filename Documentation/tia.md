@@ -1,6 +1,6 @@
 Tia
 
-[Go to Main Documentation Page](../README.md)
+[Go to Main Documentation Page](../Documentation.md)
 
 Work done: Developed ANN Model
 
