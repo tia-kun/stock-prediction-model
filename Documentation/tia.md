@@ -2,7 +2,7 @@ Tia
 
 [Go to Main Documentation Page](../Documentation)
 
-Work done: Developed ANN Model
+Contribution: Developed ANN Model
 
 
 * Preprocessed the data: imported training and testing sets for each company.
