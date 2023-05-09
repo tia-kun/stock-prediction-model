@@ -1,5 +1,4 @@
-# ML in Financial Markets VIP: Asset Pricing Subteam
-Stock Closing Price Prediction Model
+# Stock Closing Price Prediction Model
 
 Contributers: Tia Kungwani, Andrew Kaminer, Siddharth Vijay
 
