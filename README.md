@@ -1,5 +1,5 @@
 # ml-vip-vxv-IVAP
-VIP-subteam for ML in Finance: Intrinsic Value Asset Pricing
+Machine Learning in Financial Markets VIP: Stock Closing Price Prediction Model
 
 Link to Original Paper:
 https://www.sciencedirect.com/science/article/pii/S1877050920307924
