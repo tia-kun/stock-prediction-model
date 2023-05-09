@@ -12,4 +12,3 @@ Contribution:
   ANN Model Help:
   - Incorporated Input Variables in ANN model.
   - Created plotting feature to display ANN model
-  - [Code Folder]
